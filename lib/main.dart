@@ -1,6 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:time_tracker_app/screens/landing_page_screen.dart';
+import 'package:time_tracker_app/pages/landing_page.dart';
 import 'package:time_tracker_app/services/auth.dart';
 
 Future<void> main() async {
