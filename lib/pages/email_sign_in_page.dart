@@ -12,7 +12,7 @@ class EmailSignInPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: EmailSignInForm(),
+          child: EmailSignInFormPage(),
         ),
       ),
       backgroundColor: Colors.grey[200],
