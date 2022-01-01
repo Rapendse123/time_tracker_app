@@ -1,16 +1,15 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:time_tracker_app/pages/sign_in_page.dart';
 import 'package:time_tracker_app/services/auth.dart';
-
 import 'home_page.dart';
 
-class LandingPageScreen extends StatelessWidget {
-  const LandingPageScreen({Key key, @required this.auth}) : super(key: key);
-  final AuthBase auth;
+class LandingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final auth = Provider.of<AuthBase>(context, listen: false);
     return StreamBuilder<User>(
       stream: auth.authStateChanges(),
       builder: (context, snapshot) {
@@ -19,13 +18,9 @@ class LandingPageScreen extends StatelessWidget {
           // '?' null aware operator prevents printing when user signs out
           print('User id: ${user?.uid}');
           if (user == null)
-            return SignInPageScreen(
-                auth: auth,
-            );
+            return SignInPage();
           else
-            return HomePageScreen(
-              auth: auth,
-            );
+            return HomePage();
         } else {
           return Scaffold(
             body: Center(
