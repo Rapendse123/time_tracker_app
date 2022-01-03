@@ -2,11 +2,10 @@ import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:time_tracker_app/pages/validators.dart';
+import 'package:time_tracker_app/pages/sign_in/validators.dart';
 import 'package:time_tracker_app/services/auth.dart';
 import 'package:time_tracker_app/widgets/exception_alert_dialog.dart';
 import 'package:time_tracker_app/widgets/form_submit_button.dart';
-import 'package:time_tracker_app/widgets/show_alert_dialog.dart';
 
 enum EmailSignInFormType { signIn, register }
 

@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:time_tracker_app/pages/sign_in_page.dart';
+import 'package:time_tracker_app/pages/sign_in/sign_in_page.dart';
 import 'package:time_tracker_app/services/auth.dart';
 import 'home_page.dart';
 
@@ -18,7 +18,7 @@ class LandingPage extends StatelessWidget {
           // '?' null aware operator prevents printing when user signs out
           print('User id: ${user?.uid}');
           if (user == null)
-            return SignInPage();
+            return SignInPage.create(context);
           else
             return HomePage();
         } else {
