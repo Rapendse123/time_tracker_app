@@ -9,13 +9,13 @@ import 'package:time_tracker_app/widgets/form_submit_button.dart';
 
 enum EmailSignInFormType { signIn, register }
 
-class EmailSignInFormPage extends StatefulWidget
+class EmailSignInFormPageStateful extends StatefulWidget
     with EmailAndPasswordValidators {
   @override
-  _EmailSignInFormPageState createState() => _EmailSignInFormPageState();
+  _EmailSignInFormPageStatefulState createState() => _EmailSignInFormPageStatefulState();
 }
 
-class _EmailSignInFormPageState extends State<EmailSignInFormPage> {
+class _EmailSignInFormPageStatefulState extends State<EmailSignInFormPageStateful> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
