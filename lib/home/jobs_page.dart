@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:time_tracker_app/services/auth.dart';
 import 'package:time_tracker_app/widgets/show_alert_dialog.dart';
 
-class HomePage extends StatelessWidget {
+class JobsPage extends StatelessWidget {
 
   Future<void> _signOut(BuildContext context) async {
     try {
