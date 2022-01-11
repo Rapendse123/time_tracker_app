@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:time_tracker_app/pages/sign_in/sign_in_page.dart';
 import 'package:time_tracker_app/services/auth.dart';
-import 'home_page.dart';
+import 'package:time_tracker_app/services/database.dart';
+import '../home/jobs_page.dart';
 
 class LandingPage extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     final auth = Provider.of<AuthBase>(context, listen: false);
@@ -20,7 +20,9 @@ class LandingPage extends StatelessWidget {
           if (user == null)
             return SignInPage.create(context);
           else
-            return HomePage();
+            return Provider<Database>(
+                create: (_) => FireStoreDatabase(uid: user.uid),
+                child: JobsPage());
         } else {
           return Scaffold(
             body: Center(

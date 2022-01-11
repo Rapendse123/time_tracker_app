@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:time_tracker_app/services/auth.dart';
+import 'package:time_tracker_app/services/database.dart';
 import 'package:time_tracker_app/widgets/show_alert_dialog.dart';
 
-class JobsPage extends StatelessWidget {
+import 'models/job.dart';
 
+class JobsPage extends StatelessWidget {
   Future<void> _signOut(BuildContext context) async {
     try {
       final auth = Provider.of<AuthBase>(context, listen: false);
@@ -22,16 +24,21 @@ class JobsPage extends StatelessWidget {
       defaultActionText: 'Logout',
       cancelActionText: 'Cancel',
     );
-    if(didRequestSignOut == true){
+    if (didRequestSignOut == true) {
       _signOut(context);
     }
+  }
+
+  Future<void> _createJob(BuildContext context) async{
+    final database = Provider.of<Database>(context, listen: false);
+    await database.createJob(Job(name:'Blogging', ratePerHour: 10));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home Page'),
+        title: Center(child: Text('Jobs')),
         actions: [
           FlatButton(
             child: Text(
@@ -41,6 +48,10 @@ class JobsPage extends StatelessWidget {
             onPressed: () => _confirmSignOut(context),
           )
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () => _createJob(context),
       ),
     );
   }
