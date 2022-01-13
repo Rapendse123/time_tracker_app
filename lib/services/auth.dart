@@ -4,27 +4,25 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 abstract class AuthBase {
   User get currentUser;
+  Stream<User> authStateChanges();
 
   Future<User> signInAnonymously();
+
+  Future<User> signInWithEmailAndPassword(String email, String password);
+
+  Future<User> createUserWithEmailAndPassword(String email, String password);
 
   Future<User> signInWithGoogle();
 
   Future<User> signInWithFacebook();
 
-  Future<User> createUserWithEmailAndPassword(String email, String password);
-
-  Future<User> signInWithEmailAndPassword(String email, String password);
-
   Future<void> signOut();
-
-  Stream<User> authStateChanges();
 }
 
 class Auth implements AuthBase {
   final _firebaseAuth = FirebaseAuth.instance;
 
   @override
-  // it notifies changes to user's sign-in states, such as sign-in and sign-out
   Stream<User> authStateChanges() => _firebaseAuth.authStateChanges();
 
   @override
@@ -32,9 +30,26 @@ class Auth implements AuthBase {
 
   @override
   Future<User> signInAnonymously() async {
-    final userCredentials = await _firebaseAuth.signInAnonymously();
-    // print('${userCredentials.user.uid}');
-    return userCredentials.user;
+    final userCredential = await _firebaseAuth.signInAnonymously();
+    return userCredential.user;
+  }
+
+  @override
+  Future<User> signInWithEmailAndPassword(String email, String password) async {
+    final userCredential = await _firebaseAuth.signInWithCredential(
+      EmailAuthProvider.credential(email: email, password: password),
+    );
+    return userCredential.user;
+  }
+
+  @override
+  Future<User> createUserWithEmailAndPassword(
+      String email, String password) async {
+    final userCredential = await _firebaseAuth.createUserWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
+    return userCredential.user;
   }
 
   @override
@@ -44,12 +59,12 @@ class Auth implements AuthBase {
     if (googleUser != null) {
       final googleAuth = await googleUser.authentication;
       if (googleAuth.idToken != null) {
-        final userCredentials = await _firebaseAuth
+        final userCredential = await _firebaseAuth
             .signInWithCredential(GoogleAuthProvider.credential(
           idToken: googleAuth.idToken,
           accessToken: googleAuth.accessToken,
         ));
-        return userCredentials.user;
+        return userCredential.user;
       } else {
         throw FirebaseAuthException(
           code: 'ERROR_MISSING_GOOGLE_ID_TOKEN',
@@ -59,7 +74,7 @@ class Auth implements AuthBase {
     } else {
       throw FirebaseAuthException(
         code: 'ERROR_ABORTED_BY_USER',
-        message: 'Sign In aborted by user',
+        message: 'Sign in aborted by user',
       );
     }
   }
@@ -74,14 +89,14 @@ class Auth implements AuthBase {
     switch (response.status) {
       case FacebookLoginStatus.success:
         final accessToken = response.accessToken;
-        final userCredentials = await _firebaseAuth.signInWithCredential(
+        final userCredential = await _firebaseAuth.signInWithCredential(
           FacebookAuthProvider.credential(accessToken.token),
         );
-        return userCredentials.user;
+        return userCredential.user;
       case FacebookLoginStatus.cancel:
         throw FirebaseAuthException(
           code: 'ERROR_ABORTED_BY_USER',
-          message: 'Sign In aborted by user',
+          message: 'Sign in aborted by user',
         );
       case FacebookLoginStatus.error:
         throw FirebaseAuthException(
@@ -100,21 +115,5 @@ class Auth implements AuthBase {
     final facebookLogin = FacebookLogin();
     await facebookLogin.logOut();
     await _firebaseAuth.signOut();
-  }
-
-  @override
-  Future<User> createUserWithEmailAndPassword(
-      String email, String password) async {
-    final userCredentials = await _firebaseAuth.createUserWithEmailAndPassword(
-        email: email, password: password);
-    return userCredentials.user;
-  }
-
-  @override
-  Future<User> signInWithEmailAndPassword(String email, String password) async {
-    final userCredentials = await _firebaseAuth.signInWithCredential(
-      EmailAuthProvider.credential(email: email, password: password),
-    );
-    return userCredentials.user;
   }
 }
