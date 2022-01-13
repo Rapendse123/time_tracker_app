@@ -8,6 +8,7 @@ class EntriesListTileModel {
     this.middleText,
     this.isHeader = false,
   });
+
   final String leadingText;
   final String trailingText;
   final String middleText;
@@ -16,6 +17,7 @@ class EntriesListTileModel {
 
 class EntriesListTile extends StatelessWidget {
   const EntriesListTile({@required this.model});
+
   final EntriesListTileModel model;
 
   @override

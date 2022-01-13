@@ -10,6 +10,7 @@ import 'package:time_tracker_app/services/database.dart';
 
 class EntriesBloc {
   EntriesBloc({@required this.database});
+
   final Database database;
 
   /// combine List<Job>, List<Entry> into List<EntryJob>

@@ -36,8 +36,11 @@ class AccountPage extends StatelessWidget {
           radius: 50,
         ),
         SizedBox(height: 8),
-        if(user.displayName!=null)
-          Text(user.displayName,style: TextStyle(color: Colors.white),),
+        if (user.displayName != null)
+          Text(
+            user.displayName,
+            style: TextStyle(color: Colors.white),
+          ),
         SizedBox(height: 8),
       ],
     );

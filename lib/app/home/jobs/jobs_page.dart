@@ -13,8 +13,6 @@ import 'package:time_tracker_app/services/auth.dart';
 import 'package:time_tracker_app/services/database.dart';
 
 class JobsPage extends StatelessWidget {
-
-
   Future<void> _delete(BuildContext context, Job job) async {
     try {
       final database = Provider.of<Database>(context, listen: false);

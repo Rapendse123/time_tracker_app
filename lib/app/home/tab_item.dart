@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 enum TabItem { jobs, entries, account }

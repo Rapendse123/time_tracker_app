@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:time_tracker_app/app/home/account/account_page.dart';
 import 'package:time_tracker_app/app/home/cupertino_home_scaffold.dart';
@@ -40,7 +39,8 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () async => !await navigatorKeys[_currentTab].currentState.maybePop(),
+      onWillPop: () async =>
+          !await navigatorKeys[_currentTab].currentState.maybePop(),
       child: CupertinoHomeScaffold(
         currentTab: _currentTab,
         onSelectTab: _select,
@@ -49,5 +49,4 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-
 }

@@ -10,6 +10,7 @@ import 'package:time_tracker_app/services/auth.dart';
 
 class EmailSignInFormBlocBased extends StatefulWidget {
   EmailSignInFormBlocBased({@required this.bloc});
+
   final EmailSignInBloc bloc;
 
   static Widget create(BuildContext context) {

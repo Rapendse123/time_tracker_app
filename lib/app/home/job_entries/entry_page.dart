@@ -11,6 +11,7 @@ import 'package:time_tracker_app/services/database.dart';
 
 class EntryPage extends StatefulWidget {
   const EntryPage({@required this.database, @required this.job, this.entry});
+
   final Database database;
   final Job job;
   final Entry entry;

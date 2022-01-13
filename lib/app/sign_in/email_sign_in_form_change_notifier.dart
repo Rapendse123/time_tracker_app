@@ -11,6 +11,7 @@ import 'package:time_tracker_app/services/auth.dart';
 
 class EmailSignInFormChangeNotifier extends StatefulWidget {
   EmailSignInFormChangeNotifier({@required this.model});
+
   final EmailSignInChangeModel model;
 
   static Widget create(BuildContext context) {
@@ -28,7 +29,8 @@ class EmailSignInFormChangeNotifier extends StatefulWidget {
       _EmailSignInFormChangeNotifierState();
 }
 
-class _EmailSignInFormChangeNotifierState extends State<EmailSignInFormChangeNotifier> {
+class _EmailSignInFormChangeNotifierState
+    extends State<EmailSignInFormChangeNotifier> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final FocusNode _emailFocusNode = FocusNode();

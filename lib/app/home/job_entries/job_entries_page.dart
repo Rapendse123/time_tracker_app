@@ -16,6 +16,7 @@ import 'package:time_tracker_app/services/database.dart';
 
 class JobEntriesPage extends StatelessWidget {
   const JobEntriesPage({@required this.database, @required this.job});
+
   final Database database;
   final Job job;
 

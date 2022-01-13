@@ -8,6 +8,7 @@ class JobDetails {
     @required this.durationInHours,
     @required this.pay,
   });
+
   final String name;
   double durationInHours;
   double pay;
@@ -16,6 +17,7 @@ class JobDetails {
 /// Groups together all jobs/entries on a given day
 class DailyJobsDetails {
   DailyJobsDetails({@required this.date, @required this.jobsDetails});
+
   final DateTime date;
   final List<JobDetails> jobsDetails;
 

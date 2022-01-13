@@ -7,11 +7,13 @@ import 'package:time_tracker_app/common_widgets/show_exception_alert_dialog.dart
 import 'package:time_tracker_app/services/database.dart';
 
 class EditJobPage extends StatefulWidget {
-  const EditJobPage({Key key, @required this.database, this.job}) : super(key: key);
+  const EditJobPage({Key key, @required this.database, this.job})
+      : super(key: key);
   final Database database;
   final Job job;
 
-  static Future<void> show(BuildContext context, {Database database, Job job}) async {
+  static Future<void> show(BuildContext context,
+      {Database database, Job job}) async {
     await Navigator.of(context, rootNavigator: true).push(
       MaterialPageRoute(
         builder: (context) => EditJobPage(database: database, job: job),
@@ -29,7 +31,6 @@ class _EditJobPageState extends State<EditJobPage> {
 
   String _name;
   int _ratePerHour;
-
 
   @override
   void initState() {
